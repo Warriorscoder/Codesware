@@ -1,16 +1,12 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
    <>
-    <Navbar/>
     <img src="/img1.avif" alt="img1 " />
-    <Footer/>
 
     {/* <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
