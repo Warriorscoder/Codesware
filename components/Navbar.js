@@ -37,7 +37,7 @@ function Navbar() {
         <FaOpencart className='text-3xl' />
       </div>
 
-      <div ref={ref} className="cart absolute top-0 right-0 bg-pink-200 py-2 px-8 translate-x-full transform  ease-in-out duration-300 w-72">
+      <div ref={ref} className="cart fixed top-0 right-0 bg-pink-200 py-2 px-8 transform transition-transform translate-x-full ease-in-out duration-100 w-72">
         <h2 className='text-xl font-bold underline text-center '>Your cart</h2>
         <span className='absolute top-5 right-2 cursor-pointer text-xl text-pink-500' onClick={togglecart} ><IoCloseCircle /></span>
 
