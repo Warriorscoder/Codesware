@@ -2,7 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link';
 import React, { useRef } from 'react'
 import { FaOpencart, FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
-import { IoCloseCircle,IoBagCheckSharp } from "react-icons/io5";
+import { IoCloseCircle, IoBagCheckSharp } from "react-icons/io5";
+import { CgTrashEmpty } from "react-icons/cg";
 
 function Navbar() {
   const togglecart = () => {
@@ -37,7 +38,7 @@ function Navbar() {
         <FaOpencart className='text-3xl' />
       </div>
 
-      <div ref={ref} className="cart fixed top-0 right-0 bg-pink-200 py-2 px-8 transform transition-transform translate-x-full ease-in-out duration-100 w-72">
+      <div ref={ref} className="cart absolute top-0 right-0 bg-pink-200 py-2 px-8 transform transition-transform translate-x-full ease-in-out duration-100 w-72">
         <h2 className='text-xl font-bold underline text-center '>Your cart</h2>
         <span className='absolute top-5 right-2 cursor-pointer text-xl text-pink-500' onClick={togglecart} ><IoCloseCircle /></span>
 
@@ -123,8 +124,13 @@ function Navbar() {
             </div>
           </li>
         </ol>
-        <button class="flex mx-auto mt-16 text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-sm"> <IoBagCheckSharp className='m-0.5 ' />
-        Check Out</button>
+        <div className="flex">
+
+          <button class="flex mx-2 mt-16 text-white bg-pink-500 border-0 py-2 px-3 focus:outline-none hover:bg-pink-600 rounded text-sm"> <IoBagCheckSharp className='m-0.5 ' />
+            Check Out</button>
+          <button class="flex mx-auto mt-16 text-white bg-pink-500 border-0 py-2 px-3 focus:outline-none hover:bg-pink-600 rounded text-sm"><CgTrashEmpty  className='m-0.5' />
+            Clear cart</button>
+        </div>
       </div>
 
     </div>
