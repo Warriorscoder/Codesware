@@ -4,6 +4,7 @@ import React, { useRef } from 'react'
 import { FaOpencart, FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
 import { IoCloseCircle, IoBagCheckSharp } from "react-icons/io5";
 import { CgTrashEmpty } from "react-icons/cg";
+import { RiAccountCircleFill } from "react-icons/ri";
 
 function Navbar({ cart, addtocart, removefromcart, clearCart, subtotal }) {
   const togglecart = () => {
@@ -34,8 +35,9 @@ function Navbar({ cart, addtocart, removefromcart, clearCart, subtotal }) {
         </ul>
       </div>
 
-      <div className="cart absolute right-9 cursor-pointer " onClick={togglecart}>
-        <FaOpencart className='text-3xl' />
+      <div className="cart flex absolute right-9 cursor-pointer " >
+       <Link href={'/login'}> <RiAccountCircleFill className='text-3xl mx-2 text-pink-600' /></Link>
+        <FaOpencart onClick={togglecart} className='text-3xl' />
       </div>
 
       <div ref={ref} className={`cart absolute top-0 right-0 bg-pink-200 py-2 px-8 transform transition-transform ${subtotal === 0 ? 'translate-x-full':'translate-x-0'} ease-in-out duration-100 w-72`}>

@@ -1,8 +1,6 @@
 import React from 'react'
 import Link from 'next/link';
 import { FaOpencart, FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
-import { IoCloseCircle, IoBagCheckSharp } from "react-icons/io5";
-import { CgTrashEmpty } from "react-icons/cg";
 
 function checkout({ cart, addtocart, removefromcart, subtotal }) {
     return (
