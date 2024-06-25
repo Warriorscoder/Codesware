@@ -18,7 +18,7 @@ function Navbar({ cart, addtocart, removefromcart, clearCart, subtotal }) {
   }
   const ref = useRef()
   return (
-    <div className='flex flex-col md:justify-start md:flex-row justify-center items-center py-2 mx-3 shadow-md'>
+    <div className='flex flex-col md:justify-start md:flex-row justify-center items-center py-2 shadow-md sticky top-0 left-0 z-10 bg-white '>
       <div>
         <Link href={'/'}>
           <Image src={'/logo.png'} width={200} height={40} alt='logo' />
@@ -38,7 +38,7 @@ function Navbar({ cart, addtocart, removefromcart, clearCart, subtotal }) {
         <FaOpencart className='text-3xl' />
       </div>
 
-      <div ref={ref} className="cart absolute top-0 right-0 bg-pink-200 py-2 px-8 transform transition-transform translate-x-full ease-in-out duration-100 w-72">
+      <div ref={ref} className={`cart absolute top-0 right-0 bg-pink-200 py-2 px-8 transform transition-transform ${subtotal === 0 ? 'translate-x-full':'translate-x-0'} ease-in-out duration-100 w-72`}>
         <h2 className='text-xl font-bold underline text-center '>Your cart</h2>
         <span className='absolute top-5 right-2 cursor-pointer text-xl text-pink-500' onClick={togglecart} ><IoCloseCircle /></span>
 
@@ -59,16 +59,17 @@ function Navbar({ cart, addtocart, removefromcart, clearCart, subtotal }) {
           </li>
           })}
         </ol>
+        <span className='font-bold' >Subtotal: {subtotal}</span>
         <div className="flex">
-
-          <button className="flex mx-2 mt-16 text-white bg-pink-500 border-0 py-2 px-3 focus:outline-none hover:bg-pink-600 rounded text-sm"> <IoBagCheckSharp className='m-0.5 ' />
+          <Link href={'/checkout'}>
+          <button className="flex mx-2 mt-5 text-white bg-pink-500 border-0 py-2 px-3 focus:outline-none hover:bg-pink-600 rounded text-sm"> <IoBagCheckSharp className='m-0.5 ' />
             Check Out</button>
-          <button onClick={clearCart} className="flex mx-auto mt-16 text-white bg-pink-500 border-0 py-2 px-3 focus:outline-none hover:bg-pink-600 rounded text-sm"><CgTrashEmpty className='m-0.5' />
+            </Link>
+          <button onClick={clearCart} className="flex mx-auto mt-5 text-white bg-pink-500 border-0 py-2 px-3 focus:outline-none hover:bg-pink-600 rounded text-sm"><CgTrashEmpty className='m-0.5' />
             Clear cart</button>
         </div>
       </div>
-
-    </div>
+</div>
   )
 }
 
