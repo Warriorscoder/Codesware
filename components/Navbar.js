@@ -23,15 +23,16 @@ function Navbar({ cart, addtocart, removefromcart, clearCart, subtotal }) {
       <div>
         <Link href={'/'}>
           <Image src={'/logo.png'} width={200} height={40} alt='logo' />
+          
         </Link>
       </div>
 
       <div className='nav px-4 ' >
         <ul className='flex space-x-2 font-bold' >
-          <Link href={'/tshirts'}> <li>T-shirts</li></Link>
-          <Link href={'/hoddies'}> <li>Hoddies</li></Link>
-          <Link href={'/mugs'}> <li>Mugs</li></Link>
-          <Link href={'/joggers'}> <li>Joggers</li></Link>
+          <Link href={'/tshirts'}> <li>T-shirts</li> </Link>
+          <Link href={'/hoddies'}>  <li>Hoddies</li> </Link>
+          <Link href={'/mugs'}>  <li>Mugs</li> </Link>
+          <Link href={'/joggers'}>  <li>Joggers</li> </Link>
         </ul>
       </div>
 
