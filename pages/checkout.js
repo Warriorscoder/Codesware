@@ -68,7 +68,7 @@ function checkout({ cart, addtocart, removefromcart, subtotal }) {
                     {Object.keys(cart).map((k) => {
                         return <li key={k}>
                             <div className="items flex">
-                                <div className='flex w-auto my-5' >{cart[k].name}</div>
+                                <div className='flex w-auto my-5' >{`${cart[k].name} ( ${cart[k].size}/${cart[k].variant})`}</div>
                                 <div className=' flex w-1/3 items-center justify-center' >
                                     <FaCircleMinus
                                         onClick={() => { removefromcart(k, 1, 499, "Wear the code", "XL", "red") }} className='text-pink-500' />

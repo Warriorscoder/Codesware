@@ -9,6 +9,7 @@ function tshirts({products}) {
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap -m-4 justify-center ">
+          {Object.keys(products).length === 0 && <p>Currently all the tshirts are out of stock, new stock comming soon. Stay tuned</p>}
             {Object.keys( products).map((item)=>{
               return <div key={products[item]._id} className="lg:w-1/5 md:w-1/2 p-3 mx-2 w-full shadow-lg">
                 <Link
@@ -39,10 +40,10 @@ function tshirts({products}) {
 
                     {products[item].size.includes("XL") && <div className=" inline m-1 p-1 border rounded border-gray-300">XL</div>}
                     </div>
-                    {products[item].color.includes('red') &&  <button className="border-2 border-gray-300 ml-1 bg-red-700 rounded-full w-6 h-6 focus:outline-none"></button>}
-                    {products[item].color.includes('blue') &&  <button className="border-2 border-blue-300 ml-1 bg-blue-700 rounded-full w-6 h-6 focus:outline-none"></button>}
-                    {products[item].color.includes('green') &&  <button className="border-2 border-green-300 ml-1 bg-green-700 rounded-full w-6 h-6 focus:outline-none"></button>}
-                    {products[item].color.includes('black') &&  <button className="border-2 border-black-300 ml-1 bg-black rounded-full w-6 h-6 focus:outline-none"></button>}
+                    {products[item].color.includes('Red') &&  <button className="border-2 border-gray-300 ml-1 bg-red-700 rounded-full w-6 h-6 focus:outline-none"></button>}
+                    {products[item].color.includes('Blue') &&  <button className="border-2 border-blue-300 ml-1 bg-blue-700 rounded-full w-6 h-6 focus:outline-none"></button>}
+                    {products[item].color.includes('Green') &&  <button className="border-2 border-green-300 ml-1 bg-green-700 rounded-full w-6 h-6 focus:outline-none"></button>}
+                    {products[item].color.includes('Black') &&  <button className="border-2 border-black-300 ml-1 bg-black rounded-full w-6 h-6 focus:outline-none"></button>}
                   </div>
                 </Link>
               </div>
