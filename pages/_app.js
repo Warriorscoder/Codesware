@@ -1,27 +1,40 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import "@/styles/globals.css";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export default function App({ Component, pageProps }) {
   const [cart, setCart] = useState({});
   const [subtotal, setSubtotal] = useState(0);
-  const router = useRouter()
+  const [user, setuser] = useState({ value: null });
+  const [key, setKey] = useState(0);
+  const router = useRouter();
+
   useEffect(() => {
     try {
       if (localStorage.getItem("cart"))
         setCart(JSON.parse(localStorage.getItem("cart")));
-      saveCart(JSON.parse(localStorage.getItem("cart")))
+      saveCart(JSON.parse(localStorage.getItem("cart")));
     } catch (error) {
       console.log(error);
       localStorage.clear();
     }
-  }, []);
+    const token = localStorage.getItem("token");
+    if (token) {
+      setuser({ value: token });
+      setKey(Math.random());
+    }
+  }, [router.query]);
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    setKey(Math.random());
+    setuser({ value: null });
+  };
   const saveCart = (newcart) => {
-    // console.log(newcart); 
-    localStorage.setItem("cart",JSON.stringify(newcart));
+    // console.log(newcart);
+    localStorage.setItem("cart", JSON.stringify(newcart));
     let subt = 0;
     let keys = Object.keys(newcart);
 
@@ -42,16 +55,15 @@ export default function App({ Component, pageProps }) {
     }
     setCart(newCart);
     saveCart(newCart);
-
   };
 
-  const buynow = (itemCode, qty, price, name, size, variant)=>{
-    let newCart = {itemCode:{ qty: 1, price, name, size, variant }};
-    
+  const buynow = (itemCode, qty, price, name, size, variant) => {
+    let newCart = { itemCode: { qty: 1, price, name, size, variant } };
+
     setCart(newCart);
     saveCart(newCart);
-    router.push('/checkout')
-  }
+    router.push("/checkout");
+  };
 
   const removefromcart = (itemCode, qty, price, name, size, variant) => {
     let newCart = cart;
@@ -73,20 +85,22 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Navbar
-        key={subtotal}
+        key={key}
+        logout={logout}
+        user={user}
         cart={cart}
         addtocart={addtocart}
         removefromcart={removefromcart}
         clearCart={clearCart}
         subtotal={subtotal}
-        />
+      />
       <Component
         cart={cart}
         addtocart={addtocart}
         removefromcart={removefromcart}
         clearCart={clearCart}
         subtotal={subtotal}
-        buynow = {buynow}
+        buynow={buynow}
         {...pageProps}
       />
       ;
