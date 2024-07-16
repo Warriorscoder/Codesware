@@ -18,7 +18,7 @@ export default function Page({
   const { slug } = router.query;
   
   const checkserviceablity = async () => { 
-    const pins = await fetch("http://localhost:3000/api/pincode");
+    const pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
 
     let pinjson = await pins.json();
 
@@ -59,7 +59,7 @@ export default function Page({
   const [size, setSize] = useState(product.size)
 
   const refreshvariant = (newsize, newcolor) => {
-    let url = `http://localhost:3000/product/${variants[newcolor][newsize]['slug']}`
+    let url = `${process.env.NEXT_PUBLIC_HOST}/product/${variants[newcolor][newsize]['slug']}`
 
     window.location = url;
   }
@@ -238,7 +238,7 @@ export default function Page({
                   $58.00
                 </span>
 
-                <button onClick={()=>buynow(slug, 1, 499, product.name, size, color)} className="flex ml-11 md:ml-4 text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-pink-600 rounded">
+                <button onClick={()=>buynow(slug, 1, 499, product.name, size, color)} className="flex ml-5 md:ml-4 text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-pink-600 rounded">
                   Buy now
                 </button>
 
@@ -246,7 +246,7 @@ export default function Page({
                   onClick={() => {
                     addtocart(slug, 1, 499, product.name, size, color);
                   }}
-                  className="flex ml-11 md:ml-4 text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-pink-600 rounded"
+                  className="flex ml-5 md:ml-4 text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-pink-600 rounded"
                 >
                   Add to cart
                 </button>

@@ -6,7 +6,6 @@ import { IoCloseCircle, IoBagCheckSharp } from "react-icons/io5";
 import { CgTrashEmpty } from "react-icons/cg";
 import { RiAccountCircleFill } from "react-icons/ri";
 
-
 function Navbar({ logout, cart, user, addtocart, removefromcart, clearCart, subtotal }) {
   const [togg, Settogg] = useState(false)
 
@@ -42,21 +41,23 @@ function Navbar({ logout, cart, user, addtocart, removefromcart, clearCart, subt
       </div>
 
       <div className="cart flex absolute right-2 cursor-pointer " >
-        <a onMouseOver={() => Settogg(true)} onMouseLeave={() => Settogg(false)} >
+        <span onMouseOver={() => Settogg(true)} onMouseLeave={() => Settogg(false)} >
 
           {togg && <div onMouseOver={() => Settogg(true)} onMouseLeave={() => Settogg(false)} className="absolute right-12 top-8 bg-pink-300 p-2 w-32 rounded-md " >
             <ul>
               <Link href={'/myaccount'}><li className='py-1 hover:text-pink-600 text-center ' >My Account</li></Link>
+
               <Link href={'/orders'}><li className='py-1 hover:text-pink-600 text-center ' >Orders</li></Link>
+              
               <li onClick={logout} className='py-1 hover:text-pink-600 text-center ' >Logout</li>
             </ul>
           </div>
           }
 
-          {user.value && <a> <Link href={'/login'}> <RiAccountCircleFill
-            className='text-3xl mx-2 text-pink-600' /></Link></a>}
+          {user.value &&  <Link href={'/login'}> <RiAccountCircleFill
+            className='text-3xl mx-2 text-pink-600' /></Link>}
 
-        </a>
+        </span>
 
         {!user.value && <Link href={'/login'}> <button className='bg-pink-500 px-2 py-1 text-sm rounded-md mx-2 text-white' >Login</button></Link>}
 
@@ -86,7 +87,7 @@ function Navbar({ logout, cart, user, addtocart, removefromcart, clearCart, subt
             </li>
           })}
         </ol>
-        <span className='font-bold' >Subtotal: {subtotal}</span>
+        <span className='font-bold' >Subtotal: ₹{subtotal}</span>
         <div className="flex">
           <Link href={'/checkout'}>
             <button className="flex mx-1 mt-5 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm"> <IoBagCheckSharp className='m-0.5 ' />

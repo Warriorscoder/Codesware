@@ -10,7 +10,7 @@ function Footer() {
           <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
            
               <Link href={'/'} >
-             <Image src={'/logo.png'} width={200} height={40}></Image>
+             <Image src={'/logo.png'} width={200} height={40} alt="logo"></Image>
             
             <p className="mt-2 mx-3 text-sm text-gray-500">
               Air plant banjo lyft occupy retro adaptogen indego

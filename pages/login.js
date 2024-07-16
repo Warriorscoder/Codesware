@@ -1,13 +1,22 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function login() {
   const router = useRouter();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    if(localStorage.getItem('token'))
+    {
+      router.push('/')
+    }
+  
+  }, [])
+  
 
   const handlechange = (e) => {
     //   console.log(e);
@@ -20,7 +29,7 @@ function login() {
     e.preventDefault();
 
     const data = { email, password };
-    let res = await fetch("http://localhost:3000/api/login", {
+    let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -50,7 +59,7 @@ function login() {
       });
 
       setTimeout(() => {
-        router.push("http://localhost:3000");
+        router.push(process.env.NEXT_PUBLIC_HOST);
       }, 1000);
     }
   };

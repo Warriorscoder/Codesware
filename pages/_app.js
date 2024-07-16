@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import "@/styles/globals.css";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import LoadingBar from "react-top-loading-bar";
 
 export default function App({ Component, pageProps }) {
   const [cart, setCart] = useState({});
@@ -10,8 +11,17 @@ export default function App({ Component, pageProps }) {
   const [user, setuser] = useState({ value: null });
   const [key, setKey] = useState(0);
   const router = useRouter();
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    router.events.on("routeChangeStart", () => {
+      setProgress(40);
+    });
+
+    router.events.on("routeChangeComplete", () => {
+      setProgress(100);
+    });
+
     try {
       if (localStorage.getItem("cart"))
         setCart(JSON.parse(localStorage.getItem("cart")));
@@ -23,14 +33,15 @@ export default function App({ Component, pageProps }) {
     const token = localStorage.getItem("token");
     if (token) {
       setuser({ value: token });
-      setKey(Math.random());
     }
+    setKey(Math.random());
   }, [router.query]);
 
   const logout = () => {
     localStorage.removeItem("token");
     setKey(Math.random());
     setuser({ value: null });
+    router.push("/");
   };
   const saveCart = (newcart) => {
     // console.log(newcart);
@@ -58,7 +69,9 @@ export default function App({ Component, pageProps }) {
   };
 
   const buynow = (itemCode, qty, price, name, size, variant) => {
-    let newCart = { itemCode: { qty: 1, price, name, size, variant } };
+    let newCart = {}
+
+    newCart[{itemCode}] =  { qty: 1, price, name, size, variant } ;
 
     setCart(newCart);
     saveCart(newCart);
@@ -84,16 +97,24 @@ export default function App({ Component, pageProps }) {
   };
   return (
     <>
-      <Navbar
-        key={key}
-        logout={logout}
-        user={user}
-        cart={cart}
-        addtocart={addtocart}
-        removefromcart={removefromcart}
-        clearCart={clearCart}
-        subtotal={subtotal}
+      <LoadingBar
+        color="#f11946"
+        progress={progress}
+        waitingTime={400}
+        onLoaderFinished={() => setProgress(0)}
       />
+      {key && (
+        <Navbar
+          key={key}
+          logout={logout}
+          user={user}
+          cart={cart}
+          addtocart={addtocart}
+          removefromcart={removefromcart}
+          clearCart={clearCart}
+          subtotal={subtotal}
+        />
+      )}
       <Component
         cart={cart}
         addtocart={addtocart}
@@ -103,7 +124,7 @@ export default function App({ Component, pageProps }) {
         buynow={buynow}
         {...pageProps}
       />
-      ;
+      
       <Footer />
     </>
   );
