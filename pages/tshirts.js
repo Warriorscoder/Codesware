@@ -83,6 +83,11 @@ export async function getServerSideProps({context}) {
          tshirts[item.name].color = [item.color];
          tshirts[item.name].size = [item.size];
        }
+       else
+       {
+        tshirts[item.name].color = [];
+        tshirts[item.name].size = [];
+       }
      }
    }
   //  console.log(products)

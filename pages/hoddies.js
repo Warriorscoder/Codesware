@@ -84,6 +84,11 @@ export async function getServerSideProps({context}) {
        if (item.availablity > 0) {
          hoddies[item.name].color = [item.color];
          hoddies[item.name].size = [item.size];
+        }
+        else
+        {
+         hoddies[item.name].color = [];
+         hoddies[item.name].size = [];
        }
      }
    }

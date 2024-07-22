@@ -82,6 +82,11 @@ export async function getServerSideProps({context}) {
        if (item.availablity > 0) {
          joggers[item.name].color = [item.color];
          joggers[item.name].size = [item.size];
+        }
+        else
+        {
+         joggers[item.name].color = [];
+         joggers[item.name].size = [];
        }
      }
    }

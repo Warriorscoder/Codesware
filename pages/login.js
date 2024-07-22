@@ -45,6 +45,7 @@ function login() {
 
     if (responce.success) {
       localStorage.setItem("token", responce.token);
+      localStorage.setItem("email", responce.email);
 
       toast.success("You logged in successfully!", {
         position: "top-left",
@@ -87,7 +88,7 @@ function login() {
             <form className="space-y-4 md:space-y-6" onSubmit={handlesubmit}>
               <div>
                 <label
-                  for="email"
+                  htmlFor="email"
                   className="block mb-2 text-sm font-medium te "
                 >
                   Your email
@@ -104,7 +105,7 @@ function login() {
               </div>
               <div>
                 <label
-                  for="password"
+                  htmlFor="password"
                   className="block mb-2 text-sm font-medium te "
                 >
                   Password
@@ -131,7 +132,7 @@ function login() {
                     />
                   </div>
                   <div className="ml-3 text-sm">
-                    <label for="remember" className="">
+                    <label htmlFor="remember" className="">
                       Remember me
                     </label>
                   </div>

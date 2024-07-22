@@ -22,7 +22,7 @@ export default function Page({
 
     let pinjson = await pins.json();
 
-    if (pinjson.includes(parseInt(pin))) {
+    if (Object.keys(pinjson).includes(pin)) {
       setservice(true);
       toast.success('Yay! your pincode is serviceable', {
         position: "top-right",
@@ -235,16 +235,16 @@ export default function Page({
               </div>
               <div className="flex">
                 <span className="title-font font-medium text-2xl text-gray-900">
-                  $58.00
+                 ₹{product.price}
                 </span>
 
-                <button onClick={()=>buynow(slug, 1, 499, product.name, size, color)} className="flex ml-5 md:ml-4 text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-pink-600 rounded">
+                <button onClick={()=>buynow(slug, 1, product.price, product.name, size, color)} className="flex ml-5 md:ml-4 text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-pink-600 rounded">
                   Buy now
                 </button>
 
                 <button
                   onClick={() => {
-                    addtocart(slug, 1, 499, product.name, size, color);
+                    addtocart(slug, 1, product.price, product.name, size, color);
                   }}
                   className="flex ml-5 md:ml-4 text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-pink-600 rounded"
                 >
@@ -286,7 +286,7 @@ export default function Page({
               )}
 
               {service && service != null && (
-                <div className="text-Green-700 mt-3">
+                <div className="text-green-700 mt-3">
                   Yay! This pincode is serviceable
                 </div>
               )}

@@ -90,10 +90,10 @@ function Navbar({ logout, cart, user, addtocart, removefromcart, clearCart, subt
         <span className='font-bold' >Subtotal: ₹{subtotal}</span>
         <div className="flex">
           <Link href={'/checkout'}>
-            <button className="flex mx-1 mt-5 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm"> <IoBagCheckSharp className='m-0.5 ' />
+            <button disabled={Object.keys(cart).length === 0} className=" disabled:bg-pink-300 flex mx-1 mt-5 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm"> <IoBagCheckSharp className='m-0.5 ' />
               Check Out</button>
           </Link>
-          <button onClick={clearCart} className="flex mx-auto mt-5 text-white bg-pink-500 border-0 py-2 px-3 focus:outline-none hover:bg-pink-600 rounded text-sm"><CgTrashEmpty className='m-0.5' />
+          <button disabled={Object.keys(cart).length === 0} onClick={clearCart} className="disabled:bg-pink-300 flex mx-auto mt-5 text-white bg-pink-500 border-0 py-2 px-3 focus:outline-none hover:bg-pink-600 rounded text-sm"><CgTrashEmpty className='m-0.5' />
             Clear cart</button>
         </div>
       </div>

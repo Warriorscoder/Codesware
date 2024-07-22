@@ -8,7 +8,7 @@ import LoadingBar from "react-top-loading-bar";
 export default function App({ Component, pageProps }) {
   const [cart, setCart] = useState({});
   const [subtotal, setSubtotal] = useState(0);
-  const [user, setuser] = useState({ value: null });
+  const [user, setuser] = useState({ value: null, email:'' });
   const [key, setKey] = useState(0);
   const router = useRouter();
   const [progress, setProgress] = useState(0);
@@ -28,19 +28,23 @@ export default function App({ Component, pageProps }) {
       saveCart(JSON.parse(localStorage.getItem("cart")));
     } catch (error) {
       console.log(error);
-      localStorage.clear();
+      // localStorage.clear();
+      setCart({});
+      saveCart({});
     }
     const token = localStorage.getItem("token");
+    const email = localStorage.getItem('email')
     if (token) {
-      setuser({ value: token });
+      setuser({ value: token , email: email});
     }
     setKey(Math.random());
   }, [router.query]);
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("email");
     setKey(Math.random());
-    setuser({ value: null });
+    setuser({ value: null, email:''});
     router.push("/");
   };
   const saveCart = (newcart) => {
@@ -71,8 +75,8 @@ export default function App({ Component, pageProps }) {
   const buynow = (itemCode, qty, price, name, size, variant) => {
     let newCart = {}
 
-    newCart[{itemCode}] =  { qty: 1, price, name, size, variant } ;
-
+    newCart[itemCode] =  { qty: 1, price, name, size, variant } ;
+    // console.log(newCart);
     setCart(newCart);
     saveCart(newCart);
     router.push("/checkout");
@@ -116,6 +120,7 @@ export default function App({ Component, pageProps }) {
         />
       )}
       <Component
+        user={user}
         cart={cart}
         addtocart={addtocart}
         removefromcart={removefromcart}
