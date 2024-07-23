@@ -80,7 +80,7 @@ function checkout({ user, cart, addtocart, removefromcart, subtotal, clearCart }
       products.push(temp);
     });
     let amount = subtotal;
-    const data = { email, orderId, products, address, amount, status };
+    const data = { email, orderId, products, address, amount, status, phone, pincode, state, city };
 
     // console.log(data)
     let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/setorders`, {
@@ -220,7 +220,7 @@ function checkout({ user, cart, addtocart, removefromcart, subtotal, clearCart }
           <input
             onChange={handlechandge}
             value={phone}
-            type="phone"
+            type="text"
             id="phone"
             name="phone"
             className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"

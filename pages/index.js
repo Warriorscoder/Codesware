@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
    <>
-    <img src="/img1.avif" alt="img1 " />
+    <Image className="" width={5000} height={500} src="/img1.avif" alt="img1 " />
 
     {/* <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
