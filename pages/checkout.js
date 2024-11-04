@@ -83,7 +83,7 @@ function checkout({ user, cart, addtocart, removefromcart, subtotal, clearCart }
     const data = { email, orderId, products, address, amount, status, phone, pincode, state, city };
 
     // console.log(data)
-    let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/setorders`, {
+    let res = await fetch(`/api/setorders`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
